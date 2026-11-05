@@ -278,7 +278,7 @@ function CineApp() {
                   setCategory(null);
                 })}
               </View>
-            ) : null
+            ) : undefined
           }
           ListFooterComponent={
             <View style={s.footer}>

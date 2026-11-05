@@ -5,7 +5,7 @@ Aplicación móvil de cartelera para Práctica 2 Unidad 2. Incluye Expo + React 
 ## Requisitos
 
 - Node.js 24 LTS y npm.
-- Expo Go compatible con Expo SDK 57, o un emulador/desarrollo nativo compatible. Se usan las mismas versiones de Expo, React y React Native que el ejemplo CasaCambio. Consulta https://expo.dev/go para la versión compatible.
+- Expo Go compatible con Expo SDK 58, o un emulador/desarrollo nativo compatible. El proyecto se actualizó a SDK 58 para coincidir con Expo Go instalado en el teléfono. Consulta https://expo.dev/go para la versión compatible.
 - Docker Desktop para iniciar MySQL y la API juntos, o MySQL 8.4 instalado para la alternativa manual.
 
 ## Instalación

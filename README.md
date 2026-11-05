@@ -1,5 +1,7 @@
 # cineapp
 
+Para usar esta instalación en `C:\Projects\cineapp`, consulta `LEEME_LOCAL.md`. Puedes iniciar con doble clic en `INICIAR.cmd` o `INICIAR_CELULAR.cmd`.
+
 Aplicación móvil de cartelera para Práctica 2 Unidad 2. Incluye Expo + React Native + TypeScript, API REST con Express y base de datos MySQL. Interfaz en español, diseño oscuro, carteles geométricos originales, búsqueda, categorías y detalle. Las seis películas y los directores son ficticios.
 
 ## Requisitos

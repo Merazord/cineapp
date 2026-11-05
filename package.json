@@ -1,0 +1,17 @@
+{
+  "name": "cineapp",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "postinstall": "node scripts/install.mjs",
+    "start": "node scripts/start.mjs",
+    "api": "npm --prefix backend run dev",
+    "mobile": "npm --prefix mobile start",
+    "web": "npm --prefix mobile run web",
+    "test": "npm --prefix backend test",
+    "typecheck": "npm --prefix mobile run typecheck",
+    "test:mysql": "npm --prefix backend run test:mysql",
+    "android": "npm --prefix mobile run android",
+    "ios": "npm --prefix mobile run ios"
+  }
+}

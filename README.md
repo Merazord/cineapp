@@ -39,13 +39,16 @@ MySQL inicializa `database/init.sql` la primera vez que crea el volumen. La API 
 ## Abrir la app
 
 1. Copia `mobile/.env.example` a `mobile/.env`.
-2. Configura `EXPO_PUBLIC_API_URL`:
-   - Teléfono físico: `http://IP_LOCAL_DE_TU_PC:3000`. Obtén la IPv4 con `ipconfig`; teléfono y PC deben compartir red y el firewall debe permitir el puerto 3000 en esa red privada.
-   - Android Emulator: `http://10.0.2.2:3000`.
-   - iOS Simulator o navegador en el PC: `http://localhost:3000`.
+2. Deja `EXPO_PUBLIC_API_URL` vacío: en desarrollo la app consulta la API a través del mismo servidor Expo. No necesitas configurar una IP en el celular. Si prefieres un backend independiente o publicado, puedes configurar su URL explícitamente.
 3. Ejecuta `npm start` desde la raíz: inicia la API y Expo juntos. Escanea el QR con Expo Go; presiona `w` para navegador o `a` para Android. Reinicia Expo si cambias `.env`. Si la API ya está iniciada (por ejemplo con Docker), usa `npm run mobile` para abrir solamente Expo.
 
-El túnel de Expo comparte el empaquetador, pero no publica automáticamente la API local. Para usar otra red necesitas una API accesible por HTTPS.
+Si el celular no puede acceder a la computadora por Wi-Fi, deja la API encendida y ejecuta desde `mobile/`:
+
+```sh
+npm run start:tunnel
+```
+
+Escanea el nuevo QR en Expo Go. El túnel temporal funciona por internet y puede tardar más en cargar. El proxy de desarrollo en `metro.config.js` comparte las consultas de API en `/cineapp-api/`, usando el mismo túnel de Expo. Su destino es fijo: el backend local en el puerto 3000. El túnel comparte el entorno de desarrollo y el catálogo de ejemplo mientras está activo; se detiene con Ctrl+C. Para una publicación independiente de Expo configura `EXPO_PUBLIC_API_URL` con la URL HTTPS del backend.
 
 ## Demostración sin MySQL
 
@@ -89,6 +92,7 @@ Se conservan los campos solicitados en el enunciado. Se agregan `Color` y `Estre
 npm test
 npm run typecheck
 npm run test:mysql
+npm --prefix mobile test
 ```
 
 Las pruebas de API cubren catálogo, detalle, filtros, valores inválidos, película inexistente y errores de conexión usando el repositorio demo. `test:mysql` prueba la conexión real con las credenciales de `backend/.env`, las relaciones, los filtros y el API; espera los seis registros originales del script. Es de solo lectura. `/health` debe indicar `source: mysql`.

@@ -14,6 +14,8 @@ import {
   useWindowDimensions,
 } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import Constants from "expo-constants";
+import { getApiUrl } from "./src/api-url";
 type Movie = {
   id: number;
   titulo: string;
@@ -26,9 +28,11 @@ type Movie = {
   estreno: boolean;
 };
 type Category = { id: number; nombre: string };
-const API = (
-  process.env.EXPO_PUBLIC_API_URL || "http://localhost:3000"
-).replace(/\/$/, "");
+const API = getApiUrl(
+  process.env.EXPO_PUBLIC_API_URL,
+  Constants.expoConfig?.hostUri,
+  __DEV__,
+);
 async function request<T>(path: string): Promise<T> {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 10000);
